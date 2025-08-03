@@ -1,16 +1,10 @@
 pipeline:
-  deploy-skadi:
+  test-skadi:
     image: alpine
-    agent:
-      - arm64
-    environment:
-      HOST: 192.168.1.20
-      USER: potentpi4
-      DEST: /home/potentpi4
     commands:
-      - apk add --no-cache openssh
-      - mkdir -p ~/.ssh
-      - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-      - chmod 600 ~/.ssh/id_rsa
-      - scp ./deploy/skadi/docker-compose.yml $USER@$HOST:$DEST/
-      - ssh $USER@$HOST 'docker compose -f ~/docker-compose.yml up -d'
+      - echo "Running test on Skadi"
+      - uname -a
+    when:
+      matrix:
+        WOODPECKER_AGENT_LABELS:
+          - device=skadi
