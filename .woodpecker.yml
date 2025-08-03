@@ -1,14 +1,9 @@
-labels:
-  device: skadi
-
 steps:
-  - name: uname
+  ping:
     image: alpine
     commands:
-      - echo "Running test on Skadi"
-      - uname -a
+      - echo "Running on Skadi!"
     when:
-      labels:
-        linux: arm64
       event:
         - push
+      platform: linux/arm64
