@@ -1,6 +1,8 @@
 pipeline:
   deploy-skadi:
     image: alpine
+    agent:
+      - arm64
     environment:
       HOST: 192.168.1.20
       USER: potentpi4
