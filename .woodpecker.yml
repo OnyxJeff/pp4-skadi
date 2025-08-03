@@ -1,9 +1,12 @@
-name: Test on Skadi
 labels:
   device: skadi
+
 steps:
   - name: uname
     image: alpine
     commands:
       - echo "Running test on Skadi"
       - uname -a
+    when:
+      event:
+        - push
