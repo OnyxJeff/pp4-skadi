@@ -62,6 +62,33 @@ pp4-skadi/
 
 ---
 
+## ⚠️ Updating the OS
+
+- Update and Upgrade the System via script:
+```bash
+cd ~/pp4-skadi/scripts
+chmod +x apt-get-autoupdater.sh
+sudo ./apt-get-autoupdater.sh
+```
+
+- Start CronJob (optional but recommended if doing headless/always on installation)
+```bash
+sudo crontab -e
+```
+
+  - add the following to the bottom of the document:
+  ```bash
+  # OS-Auto-Updater
+    00 01 * * 0 bash $HOME/pp4-skadi/scripts/apt-get-autoupdater.sh
+      # execute automatic update script and log every sunday at 01:00 am
+    50 00 1 * * /bin/bash -c 'cp $HOME/pp4-skadi/logs/apt-get-autoupdater.log $HOME/pp4-skadi/backup_logs/apt-get-autoupdater-$(date +\%Y\%m\%d).log'
+      # saves monthly version of "apt-get-autoupdater.log" on the 1st of every month at 00:50 am
+    51 00 1 * * rm -f $HOME/pp4-skadi/logs/apt-get-autoupdater.log
+      # deletes old weekly log on the 1st of every month at 00:51 am
+  ```
+
+---
+
 ## 🖥️ Installing U6143_ssd1306 Display
 
 - Enabling i2c
@@ -136,33 +163,6 @@ sudo ./setup_display_service.sh
 
 ---
 
-## ⚠️ Updating the OS
-
-- Update and Upgrade the System via script:
-```bash
-cd ~/pp4-skadi/scripts
-chmod +x apt-get-autoupdater.sh
-sudo ./apt-get-autoupdater.sh
-```
-
-- Start CronJob (optional but recommended if doing headless/always on installation)
-```bash
-sudo crontab -e
-```
-
-  - add the following to the bottom of the document:
-  ```bash
-  # OS-Auto-Updater
-    00 01 * * 0 bash $HOME/pp4-skadi/scripts/apt-get-autoupdater.sh
-      # execute automatic update script and log every sunday at 01:00 am
-    50 00 1 * * /bin/bash -c 'cp $HOME/pp4-skadi/logs/apt-get-autoupdater.log $HOME/pp4-skadi/backup_logs/apt-get-autoupdater-$(date +\%Y\%m\%d).log'
-      # saves monthly version of "apt-get-autoupdater.log" on the 1st of every month at 00:50 am
-    51 00 1 * * rm -f $HOME/pp4-skadi/logs/apt-get-autoupdater.log
-      # deletes old weekly log on the 1st of every month at 00:51 am
-  ```
-
----
-
 ## 📦 Installing Docker Compose
 
 - Install Docker
@@ -231,6 +231,11 @@ ls -l ~/.ssh/id_ed25519*
   - You should see two files:
     - `id_ed25519` → private key (keep secret!)
     - `id_ed25519.pub` → public key (what you copy to targets)
+
+- Install SSHPass on Control Node:
+```bash
+sudo apt install -y sshpass
+```
 
 - Copy the public key to a target host
   Example for a Pi or Linux VM:
