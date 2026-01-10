@@ -60,6 +60,8 @@ pp4-skadi/
   git clone https://github.com/OnyxJeff/pp4-skadi.git
   ```
 
+---
+
 ## 🖥️ Installing U6143_ssd1306 Display
 
 - Enabling i2c
@@ -159,6 +161,8 @@ sudo crontab -e
       # deletes old weekly log on the 1st of every month at 00:51 am
   ```
 
+---
+
 ## 📦 Installing Docker Compose
 
 - Install Docker
@@ -194,6 +198,65 @@ docker compose version
 cd ~/pp4-skadi/dockprom
 docker compose up -d
 ```
+
+---
+
+## Installing Ansible
+
+- Install Ansible
+```bash
+sudo apt install -y ansible git python3-pip
+ansible --version
+```
+
+- Generate an SSH Key Pair
+```bash
+ssh-keygen -t ed25519 -C "ansible@homelab"
+```
+  - Explaination of flags:
+    - `-t ed25519` → modern, secure key type (better than RSA)
+    - `-C "ansible@homelab"` → optional comment so you know which key it is
+  You'll see promtps like:
+  `Enter file in which to save the key (/home/potentpi4/.ssh/id_ed25519):`
+  - Press **Enter** to accept the default location.
+  - When prompted for a passphrase, you can either:
+    - Enter one (more secure, but you’ll type it for every run unless you use `ssh-agent`)
+    - Leave empty (convenient for automated playbooks)
+
+- Verify you keys
+```bash
+ls -l ~/.ssh/id_ed25519*
+```
+
+  - You should see two files:
+    - `id_ed25519` → private key (keep secret!)
+    - `id_ed25519.pub` → public key (what you copy to targets)
+
+- Copy the public key to a target host
+  Example for a Pi or Linux VM:
+  ```bash
+  ssh-copy-id pi@<target-host-ip>
+  ```
+  - Replace `pi` with the username on the target.
+  - Replace `<target-host-ip>` with the IP address.
+  If SSH is default port 22, this works. If custom port:
+  ```bash
+  ssh-copy-id -p 2222 pi@<target-host-ip>
+  ```
+
+- Test passwordless SSH
+```bash
+ssh pi@<target-host-ip>
+```
+  - You should log in without a password prompt.
+  - If it asks for a password, something went wrong—check `~/.ssh/authorized_keys` on the target.
+
+- Optional: Agent Forwarding (Handy for Ansible)
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+This lets Ansible use the key automatically
 
 ---
 
