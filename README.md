@@ -216,8 +216,8 @@ ssh-keygen -t ed25519 -C "ansible@homelab"
   - Explaination of flags:
     - `-t ed25519` → modern, secure key type (better than RSA)
     - `-C "ansible@homelab"` → optional comment so you know which key it is
-  You'll see promtps like:
-  `Enter file in which to save the key (/home/potentpi4/.ssh/id_ed25519):`
+    - You'll see promtps like:
+    `Enter file in which to save the key (/home/potentpi4/.ssh/id_ed25519):`
   - Press **Enter** to accept the default location.
   - When prompted for a passphrase, you can either:
     - Enter one (more secure, but you’ll type it for every run unless you use `ssh-agent`)
