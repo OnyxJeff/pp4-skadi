@@ -102,6 +102,13 @@ pp4-skadi/
   
   Choose Interface Options Enable i2c
 
+- Environmental configuration
+```bash
+sudo apt install make
+```
+```bash
+sudo apt install gcc
+```
 
 - Run setup_display_service.sh script
 ```bash
