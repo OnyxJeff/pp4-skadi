@@ -70,6 +70,8 @@ cd ~/pp4-skadi/scripts
 chmod +x apt-get-autoupdater.sh
 sudo ./apt-get-autoupdater.sh
 ```
+> [!NOTE]
+> This may take a while if using an OS other than Raspberry Pi OS
 
 - Start CronJob (optional but recommended if doing headless/always on installation)
 ```bash
