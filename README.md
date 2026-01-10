@@ -55,8 +55,8 @@ pp4-skadi/
   ```
 
   - Enabling i2c
-    > [!Important]
-    > If running on an OS other than Raspberry Pi OS complete the next step before continuing
+> [!IMPORTANT]
+> If running on an OS other than Raspberry Pi OS complete the next step before continuing
     
     - Download Raspi-Config from the Raspberry Pi Archive
       - Navigate to [raspi-config](https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/). Pick the latest version.
@@ -68,8 +68,9 @@ pp4-skadi/
       ```bash
       sudo dpkg -i /tmp/raspi-config_*INSERT DATE*_all.deb
       ```
-      > [!NOTE]
-      > If this results in an error reporting missing dependencies. Read the output and install the dependencies: 
+> [!NOTE]
+> If this results in an error reporting missing dependencies. Read the output and install the dependencies: 
+
         ```bash
         sudo apt-get install *INSERT DEPENDENCIES*
         ```
