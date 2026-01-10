@@ -93,46 +93,6 @@ sudo crontab -e
 
 ## 🖥️ Installing U6143_ssd1306 Display
 
-- Enabling i2c
-
-> [!IMPORTANT]
-> If running on an OS other than Raspberry Pi OS complete the next step before continuing
-
-  - Download Raspi-Config from the Raspberry Pi Archive
-    - Navigate to [raspi-config](https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/). Pick the latest version.
-
-    - Download that file to /tmp and try to install using dpkg.
-    ```bash
-    wget https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_*INSERT DATE*_all.deb -P /tmp
-    ```
-  
-    ```bash
-    sudo dpkg -i /tmp/raspi-config_*INSERT DATE*_all.deb
-    ```
-
-    - If this results in an error reporting missing dependencies. Read the output and install the dependencies:
- 
-    ```bash
-    sudo apt-get install *INSERT DEPENDENCIES*
-    ```
-
-    - This may botch the install of `alsa-utils`, one of the dependencies. To fix, run:
-    ```bash
-    sudo apt-get -fy
-    ```
-      
-    - Now, install `raspi-config`
-    ```bash
-    sudo dpkg -i /tmp/raspi-config_*INSERT DATE*_all.deb
-    ```
-
-  - Launch Raspi-Config
-  ```bash
-  sudo raspi-config
-  ```
-  
-  Choose Interface Options Enable i2c
-
 - Environmental configuration
 ```bash
 sudo apt install make
