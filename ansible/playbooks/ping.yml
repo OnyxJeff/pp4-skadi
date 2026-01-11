@@ -1,8 +1,0 @@
----
-- name: Baby’s first Ansible playbook
-  hosts: homelab
-  gather_facts: false
-
-  tasks:
-    - name: Ping all hosts
-      ansible.builtin.ping:
